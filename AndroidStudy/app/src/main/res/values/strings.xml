@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">StudyAndroid</string>
+    <string name="rest_name_1">蜀都瓦块烧</string>
+    <string name="rest_name_2">韩香馆（红光镇店）</string>
+    <string name="rest_name_3">重庆吴铭火锅</string>
+    <string name="rest_name_4">德庄火锅（红光店）</string>
+    <string name="rest_name_5">川西元素（红光店）</string>
+    <string name="rest_name_6">瓦块烧</string>
+    <string name="rest_name_7">知味馆</string>
+    <string name="rest_name_8">兰州拉面</string>
+
+    <string name="judge_1">满意度：一星</string>
+    <string name="judge_2">满意度：二星</string>
+    <string name="judge_3">满意度：三星</string>
+    <string name="judge_4">满意度：四星</string>
+    <string name="judge_5">满意度：五星</string>
+    <string-array name="spingarr">
+        <item>附近2000米</item>
+        <item>附近1500米</item>
+        <item>附近1000米</item>
+        <item>附近500米</item>
+    </string-array>
+    <string-array name="spintype">
+        <item>美食</item>
+        <item>川菜</item>
+        <item>快餐</item>
+        <item>火锅</item>
+    </string-array>
 </resources>
