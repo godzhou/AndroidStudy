@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="记事主题："
+            android:textSize="16dp"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:id="@+id/new_topic"
+            android:layout_height="36dp"
+            android:padding="5dp"
+            android:textSize="15sp"
+            android:singleLine="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bg_edittext"
+            android:layout_width="match_parent"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="记事者："
+            android:textSize="16dp"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:id="@+id/new_peron"
+            android:layout_height="36dp"
+            android:padding="5dp"
+            android:textSize="15sp"
+            android:singleLine="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bg_edittext"
+            android:layout_width="match_parent"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/new_content"
+        android:padding="5dp"
+        android:textSize="15sp"
+        android:minLines="6"
+        android:hint="请输入内容"
+        android:inputType="textMultiLine"
+        android:gravity="left|top"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/bg_edittext"
+        android:layout_weight="0.36"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_margin="10dp"
+        android:layout_weight="0.64"
+        android:text="保存"
+        android:textSize="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>
