@@ -56,7 +56,6 @@ public class CreateNewRecord extends Activity{
                 sdf.setTimeZone(timeZoneSH);
                 String s_datetime = sdf.format(date);
 
-     //           long s_datetime = date.getTime();
 
                 String s_username = username.getText().toString();
                 String s_topic = topic.getText().toString();

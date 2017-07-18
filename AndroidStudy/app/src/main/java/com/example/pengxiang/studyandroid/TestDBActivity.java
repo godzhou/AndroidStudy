@@ -27,6 +27,7 @@ public class TestDBActivity extends Activity {
 
     public MyDatabaseHelper dbHelper;
     public MyDataBaseAdapter myDataBaseAdapter;
+    public TextView _id;
 
     private int lastPress = 0;
     private static int miCount = 0;
@@ -80,7 +81,7 @@ public class TestDBActivity extends Activity {
                             @Override
                             public void onClick(DialogInterface dialog,int which){
 
-                                TextView _id = (TextView)findViewById(R.id.date_id);
+                                _id = (TextView)findViewById(R.id.date_id);
 
                                 myDataBaseAdapter.deleteData(Long.valueOf(_id.getText().toString()));
                                 System.out.println("true");
@@ -94,7 +95,7 @@ public class TestDBActivity extends Activity {
                     }
                 }).show();
 
-                return false;
+                return true;
             }
         });
 
@@ -104,8 +105,8 @@ public class TestDBActivity extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 
-                TextView _id = (TextView)findViewById(R.id.date_id);
-                Toast.makeText(TestDBActivity.this," "+Long.valueOf(_id.getText().toString()),Toast.LENGTH_SHORT).show();
+                _id = (TextView)view.findViewById(R.id.date_id);
+              //  Toast.makeText(TestDBActivity.this," "+Long.valueOf(_id.getText().toString()),Toast.LENGTH_SHORT).show();
                 Cursor cursor = myDataBaseAdapter.fetchData(Long.valueOf(_id.getText().toString()));
 
                 String c_name = cursor.getString(cursor.getColumnIndex("username"));
@@ -115,10 +116,6 @@ public class TestDBActivity extends Activity {
 
                 cursor.close();
 
-//                delview = adapterView.getChildAt(lastPress).findViewById(R.id.item);
-//                if (null != delview){
-//                    delview.setVisibility(View.GONE);
-//                }
                 Bundle bundle = new Bundle();
                 bundle.putString("topic",c_topic);
                 bundle.putString("name",c_name);
@@ -129,59 +126,12 @@ public class TestDBActivity extends Activity {
                 intent.putExtras(bundle);
                 startActivity(intent);
 
-//                Bundle bundle = new Bundle();
-//                bundle.putInt("time",vi[1][i]);
-//                Intent intent = new Intent(TestDBActivity.this,ViewDBActivity.class);
-//                intent.putExtras(bundle);
-//                startActivity(intent);
             }
         });
 
     }
 
-    /* 添加数据 */
-//    public void addData(View view,MyDataBaseAdapter m_MyDataBaseAdapter,String topic,String name,String content) {
-//        System.out.println("3"+m_MyDataBaseAdapter);
-//        m_MyDataBaseAdapter.insertData(topic, name, content);
-//        miCount++;
-//        UpdataAdapter();
-//    }
 
-    /* 更新一条数据 */
-//    public void upData(View view)
-//    {
-//        System.out.println("update");
-//        m_MyDataBaseAdapter.updateData(miCount, "xy"+miCount, 20+miCount);
-//        UpdataAdapter();
-//    }
-
-    /* 从表中删除指定的一条数据 */
-//    public void delData(View view)
-//    {
-//		/* 删除数据 */
-//        System.out.println("deldata:"+miCount);
-//        m_MyDataBaseAdapter.deleteData(miCount);
-//        miCount--;
-//        if (miCount < 0)
-//        {
-//            miCount = 0;
-//        }
-//        UpdataAdapter();
-//    }
-
-    /*查询所有数据*/
-//    public void queryData(View view)
-//    {
-//        UpdataAdapter();
-//    }
-
-
-    /* 删除数据库 */
-//    public void DeleteDataBase()
-//    {
-//        this.deleteDatabase(m_MyDataBaseAdapter.DB_NAME);
-//        this.finish();
-//    }
 
     final int[] vi = new int[] {R.id.date_id,R.id.data_topic,R.id.data_time};
 
@@ -211,23 +161,6 @@ public class TestDBActivity extends Activity {
         }
     }
 
-
-
-    /* 按键事件处理 */
-//    public boolean onKeyDown(int keyCode, KeyEvent event)
-//    {
-//        System.out.println("关闭并删除数据库");
-//        if (keyCode == KeyEvent.KEYCODE_BACK)
-//        {
-//            System.out.println("close database");
-//			/* 退出时，不要忘记关闭 */
-//            m_MyDataBaseAdapter.close();
-//            //this.DeleteDataBase();
-//            this.finish();
-//            return true;
-//        }
-//        return super.onKeyDown(keyCode, event);
-//    }
 
 
 }

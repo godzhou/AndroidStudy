@@ -13,34 +13,22 @@ import java.util.Date;
 
 public class MyDataBaseAdapter {
 
-//    // 用于打印log
-//    private static final String TAG = "MyDataBaseAdapter";
-//
     // 表中一条数据的id
     public static final String KEY_ID = "_id";
-//
-//    //表中一条数据的记录着
-//    public static final String KEY_NAME = "user_name";
-//
+
     // 表中一条数据的主题
     public static final String KEY_TOPIC = "data_topic";
-//
+
     //表中一条数据的时间
     public static final String KEY_DATE = "datetime";
-//
+
     // 表中一条数据的内容
     public static final String KEY_CON = "content";
 
     public static final String KEY_NAME = "username";
-//
-//    // 数据库名称
-//    public final static String DB_NAME = "test.db";
-//
+
     // 数据库表名
     private static final String DB_TABLE = "Test";
-//
-//    // 数据库版本
-//    private static final int DB_VERSION = 4;
 
     // 本地Context对象
     private Context mContext = null;
@@ -55,33 +43,6 @@ public class MyDataBaseAdapter {
     private SQLiteDatabase mSQLiteDatabase = null;
 
 
-    // 由SQLiteOpenHelper继承过来
-//    private DatabaseHelper mDatabaseHelper = null;
-
-//    public class DatabaseHelper extends SQLiteOpenHelper {
-//        /* 构造函数-创建一个数据库 */
-//        DatabaseHelper(Context context) {
-//            // 当调用getWritableDatabase()
-//            // 或 getReadableDatabase()方法时
-//            // 则创建一个数据库
-//            super(context, DB_NAME, null, DB_VERSION);
-//        }
-//
-//        /* 创建一个表 */
-//        @Override
-//        public void onCreate(SQLiteDatabase db) {
-//            // 数据库没有表时创建一个
-//            db.execSQL(DB_CREATE);
-//        }
-//
-//        /* 升级数据库 */
-//        @Override
-//        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//            db.execSQL("DROP TABLE IF EXISTS tab_user");
-//            onCreate(db);
-//        }
-//    }
-
     /* 构造函数-取得Context */
     public MyDataBaseAdapter(Context context) {
         mContext = context;
@@ -94,28 +55,6 @@ public class MyDataBaseAdapter {
         mSQLiteDatabase = myDatabaseHelper.getWritableDatabase();//从真正意义上创建数据库
     }
 
-    // 关闭数据库
-//    public void close() {
-//        mDatabaseHelper.close();
-//    }
-
-    /* 插入一条数据 */
-    /*@param 记事主题，记事者，记事内容
-     *
-     */
-//    public long insertData(String topic, String name,String content) {
-//
-//        ContentValues initialValues = new ContentValues();
-//        java.util.Date date = new java.util.Date();
-//        long datetime = date.getTime();
-//        System.out.println(datetime);
-//        initialValues.put(KEY_NAME, name);
-//        initialValues.put(KEY_TOPIC, topic);
-//        initialValues.put(KEY_CON,content);
-//        initialValues.put(KEY_DATE,datetime);
-//
-//        return mSQLiteDatabase.insert(DB_TABLE, KEY_ID, initialValues);
-//    }
 
     /* 删除一条数据 */
     public boolean deleteData(long rowId) {
@@ -148,16 +87,6 @@ public class MyDataBaseAdapter {
 
     }
 
-    /* 更新一条数据 */
-//    public boolean updateData(long rowId, String name, String topic,String content) {
-//        ContentValues contentvalue = new ContentValues();
-//        contentvalue.put(KEY_NAME, name);
-//        contentvalue.put(KEY_TOPIC, topic);
-//        contentvalue.put(KEY_CON,content);
-//
-//        return mSQLiteDatabase.update(DB_TABLE, contentvalue, KEY_ID + "=" + rowId,
-//                null) > 0;
-//    }
 
     /* 删除一个表 */
     public void DeleteTable()
