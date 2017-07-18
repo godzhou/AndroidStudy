@@ -3,4 +3,86 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_weight="5"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="记事主题："
+            android:layout_weight="2.5"
+            android:paddingLeft="15dp"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/get_topic"
+            android:layout_weight="1"
+            android:textSize="17sp"
+            android:gravity="center_vertical"
+            android:textColor="#44b74f"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="5"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="记事者："
+            android:layout_weight="2.5"
+            android:paddingLeft="15dp"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/get_name"
+            android:layout_weight="1"
+            android:textSize="17sp"
+            android:gravity="center_vertical"
+            android:textColor="#44b74f"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="5"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="时间："
+            android:layout_weight="2.5"
+            android:paddingLeft="15dp"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/get_time"
+            android:layout_weight="1"
+            android:textSize="17sp"
+            android:textColor="#44b74f"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/get_con"
+        android:layout_weight="1"
+        android:padding="15dp"
+        android:textSize="17sp"
+        android:textColor="#2e57af"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
