@@ -1,129 +1,94 @@
 package com.example.pengxiang.studyandroid;
 
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import android.app.Activity;
-import android.os.Bundle;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageView;
 
-public class Activity03 extends Activity
-{
-    private final String DEBUG_TAG = "Activity02";
-    private TextView mTextView;
-    private Button mButton;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class Activity03 extends AppCompatActivity {
+
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.http2);
 
-        mTextView = (TextView)this.findViewById(R.id.TextView01);
-        mButton = (Button)this.findViewById(R.id.Button01);
-
-        mButton.setOnClickListener(new Button.OnClickListener()
-        {
+        Button button = (Button) this.findViewById(R.id.button03);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View arg0)
-            {
-                //开启线程
-                new Thread(mRunnable).start();
+            public void onClick(View v) {
+                Activity03.this.onClick(v);
             }
         });
 
     }
-    //刷新网页显示
-    private String refresh()
-    {
-        String httpUrl = "https://www.baidu.com/";
-        String resultData = "";
-        URL url = null;
-        try
-        {
-            // 构造一个URL对象
-            url = new URL(httpUrl);
-        }
-        catch (MalformedURLException e)
-        {
-            Log.e(DEBUG_TAG, "MalformedURLException");
-        }
-        if (url != null)
-        {
-            try
-            {
-                // 使用HttpURLConnection打开连接
-                HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
-                // 得到读取的内容(流)
-                InputStreamReader in = new InputStreamReader(urlConn.getInputStream());
-                // 为输出创建BufferedReader
-                BufferedReader buffer = new BufferedReader(in);
-                String inputLine = null;
-                // 使用循环来读取获得的数据
-                while (((inputLine = buffer.readLine()) != null))
-                {
-                    // 我们在每一行后面加上一个"\n"来换行
-                    resultData += inputLine + "\n";
-                }
-                // 关闭InputStreamReader
-                in.close();
-                // 关闭http连接
-                urlConn.disconnect();
-                // 设置显示取得的内容
+    private Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
 
-            }
-            catch (IOException e)
-            {
-                Log.e(DEBUG_TAG, "IOException");
-            }
+            ImageView imgView = (ImageView) findViewById(R.id.picture);
+            imgView.setImageBitmap((Bitmap) msg.obj);
         }
-        else
-        {
-            Log.e(DEBUG_TAG, "Url NULL");
+    };
+
+    public Bitmap getInternetPicture(String UrlPath) {
+        Bitmap bm = null;
+        //String urlpath = "http://csdnimg.cn/www/images/csdnindex_logo.gif";
+        // 2、获取Uri
+        try {
+            URL url = new URL(UrlPath);
+            //获取连接对象
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            //初始化连接对象
+            httpURLConnection.setRequestMethod("GET");
+            // 读取超时
+            httpURLConnection.setReadTimeout(5000);
+            // 设置连接超时
+            httpURLConnection.setConnectTimeout(5000);
+
+            if (httpURLConnection.getResponseCode() == 200) {
+                // 7、拿到服务器返回的流，客户端请求的数据，就保存在流当中
+                InputStream is = httpURLConnection.getInputStream();
+                // 8、从流中读取数据，构造一个图片对象GoogleAPI
+                bm = BitmapFactory.decodeStream(is);
+                // 9、把图片设置到UI主线程
+                // ImageView中,获取网络资源是耗时操作需放在子线程中进行,通过创建消息发送消息给主线程刷新控件；
+                Log.i("", "网络请求成功");
+
+            } else {
+                Log.v("tag", "网络请求失败");
+                bm = null;
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return resultData;
+        return bm;
+
     }
-    //子线程
-    private Runnable mRunnable = new Runnable()
-    {
-        public void run()
-        {
+    public void onClick(View v){
+        new Thread(new Runnable() {
 
-            try
-            {
-                String resultData= refresh();//获取网络编程返回的数据
-                Message message=mHandler.obtainMessage();//子线程创建消息对象
-                Bundle bundle=new Bundle();
-                bundle.putString("data", resultData);
-                message.setData(bundle);
-                //发送消息
-                message.sendToTarget();
-
-            } catch (Exception e)
-            {
-                // TODO Auto-generated catch block
-                Log.e(DEBUG_TAG, e.toString());
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                Bitmap bm = getInternetPicture("http://csdnimg.cn/www/images/csdnindex_logo.gif");
+                Message msg = new Message();
+                // 把bm存入消息中,发送到主线程
+                msg.obj = bm;
+                handler.sendMessage(msg);
             }
-
-        }
-    };
-
-    Handler mHandler = new Handler()
-    {
-        public void handleMessage(Message msg)
-        {
-            super.handleMessage(msg);
-            String data=msg.getData().getString("data");
-            //主线程中更新UI
-            mTextView.setText(data);
-        }
-    };
+        }).start();
+    }
 }

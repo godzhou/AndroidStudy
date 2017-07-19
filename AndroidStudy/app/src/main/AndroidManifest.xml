@@ -9,8 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".TestDBActivity">
-        <!--activity android:name=".Activity03"-->
+        <activity android:name=".Activity03">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +18,7 @@
         </activity>
         <activity android:name=".MainActivity"> </activity>
         <activity android:name=".ListViewActivity"> </activity>
-        <!--activity android:name=".TestDBActivity"> </activity-->
+        <activity android:name=".TestDBActivity"> </activity>
         <activity android:name=".Gallery01Activity"> </activity>
         <activity android:name=".CreateNewRecord"> </activity>
         <activity android:name=".ViewDBActivity"> </activity>
